@@ -1,0 +1,120 @@
+Anagramarama 0.9 - ArcaOS/OS2 Port
+=====================================
+
+DESCRIPTION
+-----------
+Anagramarama is a free word puzzle game.  A scrambled 7-letter word is
+displayed; you must guess as many valid anagrams of that word as possible
+before the 5-minute clock runs out.  Finding the original 7-letter word
+advances you to the next puzzle.
+
+Original game by Colm Gallagher / Identical Games.
+ArcaOS/OS2 SDL2 port by Martin Iturbide.
+
+
+REQUIREMENTS
+------------
+- ArcaOS 5.0 or later (or eComStation 2.x with DIVE support)
+- SDL2.dll          (SDL2 for OS/2)
+- SDL2_image.dll    (SDL2_image for OS/2)
+- SDL2_mixer.dll    (SDL2_mixer for OS/2)
+
+The SDL2 DLLs must be on the LIBPATH or in the same directory as
+anagramarama.exe.
+
+
+INSTALLATION
+------------
+1. Extract the archive to a directory of your choice.
+2. The directory layout must be:
+
+   anagramarama.exe
+   anagramarama.def
+   audio\
+   i18n\
+       en_GB\
+           images\
+           wordlist.txt
+
+3. Double-click anagramarama.exe or run it from a command prompt.
+
+
+CONTROLS
+--------
+Mouse:
+  Click a letter in the shuffle row   Move letter to answer row
+  Click a letter in the answer row    Move letter back to shuffle row
+  Click ENTER button                  Submit guess
+  Click CLEAR button                  Clear current guess
+  Click SHUFFLE button                Shuffle remaining letters
+  Click SOLVE button                  Reveal all answers
+  Click NEW button                    Start a new game
+  Click QUIT button                   Quit
+
+Keyboard:
+  a-z         Move first matching letter from shuffle row to answer row
+  Space       Shuffle remaining letters
+  Return      Submit guess
+  Backspace   Remove last letter from answer row
+  Escape      Clear current guess
+  F1          Toggle fullscreen / windowed
+
+
+LANGUAGES
+---------
+The game ships with English (en_GB), French (fr), Italian (it), and
+Brazilian Portuguese (pt_BR) word lists.
+
+To select a language, set the LANG environment variable before running:
+
+  SET LANG=fr
+  anagramarama.exe
+
+Supported values: en_GB, fr, it, pt_BR.  The default is en_GB.
+
+
+BUILDING FROM SOURCE
+--------------------
+Requirements: GCC 9.2 / kLIBC (as shipped with ArcaOS), GNU Make,
+              SDL2 development headers.
+
+From a command prompt inside the anagramarama directory, run:
+
+  compile-anagramarama.cmd
+
+The script sets the required EMXOMFLD environment variables and invokes
+'make -f Makefile.os2' inside the src\ directory.  The build log is
+written to src\compile-anagramarama.log.
+
+
+PORT NOTES
+----------
+This port compiles the upstream SDL2 codebase (version 0.9) for ArcaOS
+without any changes to game logic.
+
+Key OS/2 adaptations:
+- Build system: CMakeLists.txt replaced with Makefile.os2 and
+  compile-anagramarama.cmd (GCC 9.2 / OMF / WLINK toolchain).
+- SDL2 headers: include path set to C:/usr/include/SDL2 to match the
+  flat #include <SDL.h> style used by the upstream source.
+- Fullscreen: F1 uses SDL_WINDOW_FULLSCREEN_DESKTOP instead of
+  SDL_WINDOW_FULLSCREEN, which is better supported by the OS/2 DIVE
+  backend.
+- Module definition: anagramarama.def sets WINDOWAPI subsystem and
+  embeds BLDLEVEL version information.
+
+
+LICENSE
+-------
+Anagramarama is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation; either version 2 of the License, or (at your
+option) any later version.  See the file gpl.txt for details.
+
+Clock image in gamerzilla/clock1.png is under CC-BY-3.0, created by
+Keith333 (https://opengameart.org/content/clocks-watches-black-clock-
+seamless-texture-with-normalmap).
+
+LINKS
+-------
+- https://github.com/OS2World/GAME-SDL-PUZZLE-anagramarama

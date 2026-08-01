@@ -1,0 +1,40 @@
+gcc -Zomf -Zmt -O2 -Wall -Wno-unused-variable -I. -IC:/usr/include -IC:/usr/include/SDL2 -DIS_OS2_HOST -c -o ag.obj ag.c
+ag.c: In function 'checkGuess':
+ag.c:501:9: warning: variable 'foundAllLength' set but not used [-Wunused-but-set-variable]
+  501 |     int foundAllLength = 1;
+      |         ^~~~~~~~~~~~~~
+ag.c: In function 'updateScore':
+ag.c:885:32: warning: variable 'blankRect' set but not used [-Wunused-but-set-variable]
+  885 |     SDL_Rect fromrect, torect, blankRect;
+      |                                ^~~~~~~~~
+ag.c: In function 'addScore':
+ag.c:1228:32: warning: variable 'blankRect' set but not used [-Wunused-but-set-variable]
+ 1228 |     SDL_Rect fromrect, torect, blankRect;
+      |                                ^~~~~~~~~
+ag.c: In function 'gameLoop':
+ag.c:1459:17: warning: variable 'timer' set but not used [-Wunused-but-set-variable]
+ 1459 |     SDL_TimerID timer;
+      |                 ^~~~~
+At top level:
+ag.c:1770:1: warning: 'get_base_path' defined but not used [-Wunused-function]
+ 1770 | get_base_path()
+      | ^~~~~~~~~~~~~
+ag.c:1747:1: warning: 'get_user_path' defined but not used [-Wunused-function]
+ 1747 | get_user_path()
+      | ^~~~~~~~~~~~~
+ag.c:324:1: warning: 'ShowBMP' defined but not used [-Wunused-function]
+  324 | ShowBMP(const char *file, SDL_Renderer *screen)
+      | ^~~~~~~
+gcc -Zomf -Zmt -O2 -Wall -Wno-unused-variable -I. -IC:/usr/include -IC:/usr/include/SDL2 -DIS_OS2_HOST -c -o ag_core.obj ag_core.c
+ag_core.c: In function 'getRandomWord':
+ag_core.c:161:5: warning: this 'if' clause does not guard... [-Wmisleading-indentation]
+  161 |     if (fscanf(fp, "%63s", buffer) == EOF)
+      |     ^~
+ag_core.c:165:2: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+  165 |  while (strlen(buffer) != 7) {
+      |  ^~~~~
+gcc -Zomf -Zmt -O2 -Wall -Wno-unused-variable -I. -IC:/usr/include -IC:/usr/include/SDL2 -DIS_OS2_HOST -c -o dlb.obj dlb.c
+gcc -Zomf -Zmt -O2 -Wall -Wno-unused-variable -I. -IC:/usr/include -IC:/usr/include/SDL2 -DIS_OS2_HOST -c -o linked.obj linked.c
+gcc -Zomf -Zmt -O2 -Wall -Wno-unused-variable -I. -IC:/usr/include -IC:/usr/include/SDL2 -DIS_OS2_HOST -c -o sdlscale.obj sdlscale.c
+gcc -Zomf -Zmt -O2 -Wall -Wno-unused-variable -I. -IC:/usr/include -IC:/usr/include/SDL2 -DIS_OS2_HOST -c -o sprite.obj sprite.c
+gcc -Zomf -Zmt -Zstack 512 -o ../anagramarama.exe ag.obj ag_core.obj dlb.obj linked.obj sdlscale.obj sprite.obj C:/usr/lib/SDL2_dll.a C:/usr/lib/SDL2_image_dll.a C:/usr/lib/SDL2_mixer_dll.a anagramarama.def

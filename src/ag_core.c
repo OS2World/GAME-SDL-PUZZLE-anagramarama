@@ -14,8 +14,8 @@
 #include "linked.h"
 #include "ag.h"
 
-extern char txt[50];
-extern char language[64];
+extern char txt[256];
+extern char language[256];
 
 /***********************************************************
 synopsis: determine the next blank space in a string 

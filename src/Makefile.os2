@@ -1,0 +1,38 @@
+# Makefile.os2 -- Anagramarama for ArcaOS/OS2, GCC 9.2/kLIBC + SDL2
+
+CC      = gcc
+CFLAGS  = -Zomf -Zmt -O2 -Wall -Wno-unused-variable \
+          -I. -IC:/usr/include -IC:/usr/include/SDL2 \
+          -DIS_OS2_HOST
+
+LDFLAGS = -Zomf -Zmt -Zstack 512
+
+LIBS    = C:/usr/lib/SDL2_dll.a \
+          C:/usr/lib/SDL2_image_dll.a \
+          C:/usr/lib/SDL2_mixer_dll.a
+
+TARGET  = ../anagramarama.exe
+
+SRCS = \
+    ag.c \
+    ag_core.c \
+    dlb.c \
+    linked.c \
+    sdlscale.c \
+    sprite.c
+
+OBJS = $(SRCS:.c=.obj)
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS) anagramarama.def
+	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBS) anagramarama.def
+
+%.obj: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+clean:
+	-del /Q *.obj 2>nul
+	-del /Q $(TARGET) 2>nul
+
+.PHONY: all clean

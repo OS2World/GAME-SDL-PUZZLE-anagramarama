@@ -651,7 +651,7 @@ handleKeyboardEvent(SDL_Event *event, struct node* head,
 
 	if (keyedLetter == SDLK_F1) {
 		if (fullscreen == 0)
-			SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+			SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
 		else
 			SDL_SetWindowFullscreen(window, 0);
 		fullscreen = !fullscreen;
